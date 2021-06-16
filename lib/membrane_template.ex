@@ -1,2 +1,2 @@
-defmodule Membrane.Template do
+defmodule Membrane.TCP do
 end
