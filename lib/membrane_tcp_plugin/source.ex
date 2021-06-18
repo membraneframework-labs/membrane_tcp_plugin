@@ -4,15 +4,13 @@ defmodule Membrane.TCP.Source do
   """
   use Membrane.Source
 
-  alias Membrane.{Buffer, RemoteStream}
-  alias Membrane.Element.UDP.{CommonSocketBehaviour, Socket}
+  alias Membrane.Buffer
 
   def_options ip_address: [
                 type: :string,
                 description: "IP address to establish TCP connection with"
               ],
               port_no: [type: :integer, description: "Port number"],
-              # tcp_opts: [:gen_tcp.option()] | nil
               chunk_size: [
                 type: :integer,
                 spec: pos_integer,
@@ -41,7 +39,7 @@ defmodule Membrane.TCP.Source do
       {{:ok, [buffer: {:output, %Buffer{payload: payload}}] ++ redemand}, state}
     else
       :eof -> {{:ok, end_of_stream: :output}, state}
-      {:error, reason} -> {{:error, {:read_file, reason}}, state}
+      {:error, reason} -> {:error, reason, state}
     end
   end
 end
