@@ -10,7 +10,7 @@ defmodule Membrane.TCP.Sink do
                 type: :string,
                 description: "Destination IP address to establish TCP connection with"
               ],
-              port_no: [type: :integer, description: "Port number"]
+              port_no: [spec: 0..65535, description: "Port number"]
 
   def_input_pad :input,
     caps: :any,
