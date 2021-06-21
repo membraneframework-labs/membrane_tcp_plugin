@@ -31,7 +31,7 @@ defmodule Membrane.TCP.Sink do
   def handle_write(:input, %Buffer{payload: payload}, _context, %{socket: socket} = state) do
     case :gen_tcp.send(socket, payload) do
       :ok -> {{:ok, demand: :input}, state}
-      {:error, reason} -> {:error, reason, state}
+      {:error, reason} -> {{:error, reason}, state}
     end
   end
 end
