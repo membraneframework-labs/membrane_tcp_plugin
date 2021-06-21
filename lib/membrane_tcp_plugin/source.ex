@@ -10,7 +10,7 @@ defmodule Membrane.TCP.Source do
                 type: :string,
                 description: "IP address to establish TCP connection with"
               ],
-              port_no: [type: :integer, description: "Port number"],
+              port_no: [spec: 0..65535, description: "Port number"],
               chunk_size: [
                 type: :integer,
                 spec: pos_integer,
