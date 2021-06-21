@@ -39,7 +39,7 @@ defmodule Membrane.TCP.Source do
       {{:ok, [buffer: {:output, %Buffer{payload: payload}}] ++ redemand}, state}
     else
       :eof -> {{:ok, end_of_stream: :output}, state}
-      {:error, reason} -> {:error, reason, state}
+      {:error, reason} -> {{:error, reason}, state}
     end
   end
 end
