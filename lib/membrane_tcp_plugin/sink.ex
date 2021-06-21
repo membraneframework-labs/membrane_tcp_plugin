@@ -28,6 +28,7 @@ defmodule Membrane.TCP.Sink do
     {{:ok, demand: :input}, state}
   end
 
+  @impl true
   def handle_write(:input, %Buffer{payload: payload}, _context, %{socket: socket} = state) do
     case :gen_tcp.send(socket, payload) do
       :ok -> {{:ok, demand: :input}, state}

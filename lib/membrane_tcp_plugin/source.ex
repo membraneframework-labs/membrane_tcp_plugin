@@ -34,7 +34,7 @@ defmodule Membrane.TCP.Source do
   def handle_demand(:output, size, :bytes, _ctx, state),
     do: supply_demand(size, [], state)
 
-  def supply_demand(size, redemand, %{socket: socket} = state) do
+  defp supply_demand(size, redemand, %{socket: socket} = state) do
     with {:ok, payload} <- :gen_tcp.recv(socket, size) do
       {{:ok, [buffer: {:output, %Buffer{payload: payload}}] ++ redemand}, state}
     else
